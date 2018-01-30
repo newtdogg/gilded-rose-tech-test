@@ -1,3 +1,5 @@
+require_relative "item"
+
 class MaturingItem < Item
 
   attr_reader :type
@@ -7,7 +9,7 @@ class MaturingItem < Item
     @type = "maturing"
   end
 
-  def product_change
+  def mature_change
     if @sell_in > 0
       @quality += 1
     else

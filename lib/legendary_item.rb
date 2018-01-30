@@ -1,3 +1,5 @@
+require_relative "item"
+
 class LegendaryItem < Item
 
   attr_reader :type
@@ -7,7 +9,7 @@ class LegendaryItem < Item
     @type = "legendary"
   end
 
-  def product_change
+  def legendary_change
     @sell_in += 0
     @quality += 0
   end

@@ -53,14 +53,14 @@ describe GildedRose do
 
   describe "maturing item" do
     it "increases with quality over time" do
-      items = [MaturingItem.new("Aged Brie", 10, 10)]
+      items = [MaturingItem.new("Aged Wine", 10, 10)]
       gildedrose = GildedRose.new(items)
       gildedrose.update_quality
       expect(gildedrose.items[0].quality).to eq(11)
     end
 
     it "its quality increases by 2 after passing the sell by date" do
-      items = [MaturingItem.new("Aged Brie", 0, 10)]
+      items = [MaturingItem.new("Aged Wine", 0, 10)]
       gildedrose = GildedRose.new(items)
       gildedrose.update_quality
       expect(gildedrose.items[0].quality).to eq(12)
@@ -69,35 +69,35 @@ describe GildedRose do
 
   describe "backstage passes" do
     it "increases in quality over time" do
-      items = [Item.new("Backstage passes to a TAFKAL80ETC concert", 15, 10)]
+      items = [EventItem.new("Cool gig", 15, 10)]
       gildedrose = GildedRose.new(items)
       gildedrose.update_quality
       expect(gildedrose.items[0].quality).to eq(11)
     end
 
     it "increases in quality by two within 10 days of the concert" do
-      items = [Item.new("Backstage passes to a TAFKAL80ETC concert", 10, 10)]
+      items = [EventItem.new("Cool gig", 8, 10)]
       gildedrose = GildedRose.new(items)
       gildedrose.update_quality
       expect(gildedrose.items[0].quality).to eq(12)
     end
 
     it "increases in quality by three within 5 days of the concert" do
-      items = [Item.new("Backstage passes to a TAFKAL80ETC concert", 5, 10)]
+      items = [EventItem.new("Cool gig", 5, 10)]
       gildedrose = GildedRose.new(items)
       gildedrose.update_quality
       expect(gildedrose.items[0].quality).to eq(13)
     end
 
     it "increases in quality by three within 5 days of the concert" do
-      items = [Item.new("Backstage passes to a TAFKAL80ETC concert", 5, 10)]
+      items = [EventItem.new("Cool gig", 5, 10)]
       gildedrose = GildedRose.new(items)
       gildedrose.update_quality
       expect(gildedrose.items[0].quality).to eq(13)
     end
 
     it "loses all value the day after the concert" do
-      items = [Item.new("Backstage passes to a TAFKAL80ETC concert", 0, 10)]
+      items = [EventItem.new("Cool gig", -1, 10)]
       gildedrose = GildedRose.new(items)
       gildedrose.update_quality
       expect(gildedrose.items[0].quality).to eq(0)
