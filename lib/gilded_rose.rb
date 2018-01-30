@@ -8,6 +8,9 @@ class GildedRose
 
   def update_quality()
     @items.each do |item|
+      if item.is_a? LegendaryItem
+        item.product_change
+      end
       if item.name != "Aged Brie" and item.name != "Backstage passes to a TAFKAL80ETC concert"
         if item.quality > 0
           if item.name != "Sulfuras, Hand of Ragnaros"

@@ -1,5 +1,6 @@
 require "gilded_rose"
 require "item"
+require "legendary_item"
 
 describe GildedRose do
 
@@ -36,14 +37,14 @@ describe GildedRose do
 
   describe "legendary items" do
     it "legendary items cannot lose value" do
-      items = [Item.new("Sulfuras, Hand of Ragnaros", 25, 25)]
+      items = [LegendaryItem.new("Sulfuras, Hand of Ragnaros", 25, 25)]
       gildedrose = GildedRose.new(items)
       gildedrose.update_quality
       expect(gildedrose.items[0].quality).to eq(25)
     end
 
     it "legendary items do not have to be sold by a certain date" do
-      items = [Item.new("Sulfuras, Hand of Ragnaros", 25, 25)]
+      items = [LegendaryItem.new("Sulfuras, Hand of Ragnaros", 25, 25)]
       gildedrose = GildedRose.new(items)
       gildedrose.update_quality
       expect(gildedrose.items[0].sell_in).to eq(25)
