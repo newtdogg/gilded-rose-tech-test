@@ -51,16 +51,16 @@ describe GildedRose do
     end
   end
 
-  describe "aged brie" do
+  describe "maturing item" do
     it "increases with quality over time" do
-      items = [Item.new("Aged Brie", 10, 10)]
+      items = [MaturingItem.new("Aged Brie", 10, 10)]
       gildedrose = GildedRose.new(items)
       gildedrose.update_quality
       expect(gildedrose.items[0].quality).to eq(11)
     end
 
     it "its quality increases by 2 after passing the sell by date" do
-      items = [Item.new("Aged Brie", 0, 10)]
+      items = [MaturingItem.new("Aged Brie", 0, 10)]
       gildedrose = GildedRose.new(items)
       gildedrose.update_quality
       expect(gildedrose.items[0].quality).to eq(12)
