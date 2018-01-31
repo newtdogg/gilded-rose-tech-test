@@ -9,7 +9,7 @@ class LegendaryItem < Item
     @type = "legendary"
   end
 
-  def legendary_change
+  def item_change
     @sell_in += 0
     @quality += 0
   end

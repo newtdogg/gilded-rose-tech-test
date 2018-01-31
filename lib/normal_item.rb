@@ -9,7 +9,7 @@ class NormalItem < Item
     @type = "normal"
   end
 
-  def normal_change
+  def item_change
     if @sell_in >= 0
       @quality -= 1
     else

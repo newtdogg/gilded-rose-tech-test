@@ -9,7 +9,7 @@ class EventItem < Item
     @type = "event"
   end
 
-  def event_change
+  def item_change
     if @sell_in > 10
       @quality += 1
     elsif @sell_in <= 10 && @sell_in > 5

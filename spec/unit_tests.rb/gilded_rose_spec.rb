@@ -4,11 +4,16 @@ require "legendary_item"
 
 describe GildedRose do
 
+  let(:item1) { double(:item1) }
+  subject(:gildedrose) { described_class }
+
+  before(:each) do
+    gildedrose = subject.new(item1)
+  end
+
   describe "initialize" do
     it "initializes with an item" do
-      items = [NormalItem.new("Bread", 4, 10)]
-      gildedrose = GildedRose.new(items)
-      expect(gildedrose.items).to be_a(Array)
+      expect(gilded_rose.items).to be_a(Array)
     end
   end
 

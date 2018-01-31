@@ -9,7 +9,7 @@ class MaturingItem < Item
     @type = "maturing"
   end
 
-  def mature_change
+  def item_change
     if @sell_in > 0
       @quality += 1
     else

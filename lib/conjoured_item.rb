@@ -9,7 +9,7 @@ class ConjouredItem < Item
     @type = "conjoured"
   end
 
-  def conjoured_change
+  def item_change
     @quality -= 2
     @sell_in -= 1
   end
