@@ -20,3 +20,4 @@
 
 - The issues associtated with what days the prices of event tickets increased (could you buy the ticket on the day). Subsequently my tests and refactored code did not agree on this.
 - Having initially clean tests and ugly code. This distracted me from the mvp of the project, forgetting simple but clear code is fine and refactoring can come later.
+- Originally was testing different subclass functionality in the same place. It did not occur to me until I applied polymorphism to the code that I should be testing the subclasses "item_change" method in each subclasses spec file.
