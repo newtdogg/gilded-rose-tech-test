@@ -104,4 +104,13 @@ describe GildedRose do
     end
   end
 
+  describe "conjoured items" do
+    it "loses value twice as fast as a normal item" do
+      items = [ConjouredItem.new("Conjoured Mana Cake", 4, 10)]
+      gildedrose = GildedRose.new(items)
+      gildedrose.update_quality
+      expect(gildedrose.items[0].quality).to eq(8)
+    end
+  end
+
 end

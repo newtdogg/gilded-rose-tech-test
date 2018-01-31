@@ -16,6 +16,8 @@ class GildedRose
         item.event_change
       elsif item.is_a? NormalItem
         item.normal_change
+      elsif item.is_a? ConjouredItem
+        item.conjoured_change
       end
     end
   end
