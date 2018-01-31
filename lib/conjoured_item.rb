@@ -11,7 +11,6 @@ class ConjouredItem < Item
 
   def item_change
     @quality -= 2
-    @sell_in -= 1
   end
 
 end

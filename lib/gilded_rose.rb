@@ -13,7 +13,9 @@ class GildedRose
   def update_quality()
     @items.each do |item|
       item.item_change
-      item.sell_in -= 1
+      if item.type != "legendary"
+        item.sell_in -= 1
+      end
     end
   end
 

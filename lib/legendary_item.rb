@@ -10,8 +10,6 @@ class LegendaryItem < Item
   end
 
   def item_change
-    @sell_in += 0
-    @quality += 0
   end
 
 end

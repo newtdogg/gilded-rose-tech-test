@@ -10,16 +10,10 @@ class EventItem < Item
   end
 
   def item_change
-    if @sell_in > 10
-      @quality += 1
-    elsif @sell_in <= 10 && @sell_in > 5
-      @quality += 2
-    elsif @sell_in <= 5 && @sell_in >= 0
-      @quality += 3
-    elsif @sell_in < 0
-      @quality = 0
-    end
-    @sell_in -= 1
+    @quality += 1 if @sell_in > 10
+    @quality += 2 if @sell_in <= 10 && @sell_in > 5
+    @quality += 3 if @sell_in <= 5 && @sell_in >= 0
+    @quality = 0 if @sell_in < 0
   end
 
 end
