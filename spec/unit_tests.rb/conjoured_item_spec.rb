@@ -8,4 +8,9 @@ describe ConjouredItem do
     expect(conjoureditem.type).to eq("conjoured")
   end
 
+  it "loses value twice as fast as a normal item" do
+    conjoureditem.item_change
+    expect(conjoureditem.quality).to eq(8)
+  end
+
 end

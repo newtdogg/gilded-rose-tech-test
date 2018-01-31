@@ -4,118 +4,22 @@ require "legendary_item"
 
 describe GildedRose do
 
-  let(:item1) { double(:item1) }
-  subject(:gildedrose) { described_class }
+  let(:item1) { double(:item1, :item_change => true) }
+  subject(:gildedrose) { described_class.new }
 
   before(:each) do
-    gildedrose = subject.new(item1)
+    gildedrose.add_item(item1)
   end
 
-  describe "initialize" do
-    it "initializes with an item" do
-      expect(gilded_rose.items).to be_a(Array)
-    end
+  it "initializes with an item" do
+    expect(gildedrose.items).to be_a(Array)
   end
 
-  describe "update_quality for normal items" do
-    it "items degrade 1 point of quality per day" do
-      items = [NormalItem.new("Bread", 4, 10)]
-      gildedrose = GildedRose.new(items)
-      gildedrose.update_quality
-      expect(gildedrose.items[0].quality).to eq(9)
-    end
 
-    it "items date to sell is reduced by one per day" do
-      items = [NormalItem.new("Bread", 4, 10)]
-      gildedrose = GildedRose.new(items)
-      gildedrose.update_quality
-      expect(gildedrose.items[0].sell_in).to eq(3)
-    end
-
-    it "items should lose value twice as fast after their sell by date" do
-      items = [NormalItem.new("Bread", -1, 10)]
-      gildedrose = GildedRose.new(items)
-      gildedrose.update_quality
-      expect(gildedrose.items[0].quality).to eq(8)
-    end
-  end
-
-  describe "legendary items" do
-    it "legendary items cannot lose value" do
-      items = [LegendaryItem.new("Sulfuras, Hand of Ragnaros", 25, 25)]
-      gildedrose = GildedRose.new(items)
-      gildedrose.update_quality
-      expect(gildedrose.items[0].quality).to eq(25)
-    end
-
-    it "legendary items do not have to be sold by a certain date" do
-      items = [LegendaryItem.new("Sulfuras, Hand of Ragnaros", 25, 25)]
-      gildedrose = GildedRose.new(items)
-      gildedrose.update_quality
-      expect(gildedrose.items[0].sell_in).to eq(25)
-    end
-  end
-
-  describe "maturing item" do
-    it "increases with quality over time" do
-      items = [MaturingItem.new("Aged Wine", 10, 10)]
-      gildedrose = GildedRose.new(items)
-      gildedrose.update_quality
-      expect(gildedrose.items[0].quality).to eq(11)
-    end
-
-    it "its quality increases by 2 after passing the sell by date" do
-      items = [MaturingItem.new("Aged Wine", 0, 10)]
-      gildedrose = GildedRose.new(items)
-      gildedrose.update_quality
-      expect(gildedrose.items[0].quality).to eq(12)
-    end
-  end
-
-  describe "backstage passes" do
-    it "increases in quality over time" do
-      items = [EventItem.new("Cool gig", 15, 10)]
-      gildedrose = GildedRose.new(items)
-      gildedrose.update_quality
-      expect(gildedrose.items[0].quality).to eq(11)
-    end
-
-    it "increases in quality by two within 10 days of the concert" do
-      items = [EventItem.new("Cool gig", 8, 10)]
-      gildedrose = GildedRose.new(items)
-      gildedrose.update_quality
-      expect(gildedrose.items[0].quality).to eq(12)
-    end
-
-    it "increases in quality by three within 5 days of the concert" do
-      items = [EventItem.new("Cool gig", 5, 10)]
-      gildedrose = GildedRose.new(items)
-      gildedrose.update_quality
-      expect(gildedrose.items[0].quality).to eq(13)
-    end
-
-    it "increases in quality by three within 5 days of the concert" do
-      items = [EventItem.new("Cool gig", 5, 10)]
-      gildedrose = GildedRose.new(items)
-      gildedrose.update_quality
-      expect(gildedrose.items[0].quality).to eq(13)
-    end
-
-    it "loses all value the day after the concert" do
-      items = [EventItem.new("Cool gig", -1, 10)]
-      gildedrose = GildedRose.new(items)
-      gildedrose.update_quality
-      expect(gildedrose.items[0].quality).to eq(0)
-    end
-  end
-
-  describe "conjoured items" do
-    it "loses value twice as fast as a normal item" do
-      items = [ConjouredItem.new("Conjoured Mana Cake", 4, 10)]
-      gildedrose = GildedRose.new(items)
-      gildedrose.update_quality
-      expect(gildedrose.items[0].quality).to eq(8)
-    end
+  it "items date to sell is reduced by one per day" do
+    allow(item1).to receive(:sell_in) { 4 }
+    gildedrose.update_quality
+    expect(gildedrose.items[0].sell_in).to eq(3)
   end
 
 end
